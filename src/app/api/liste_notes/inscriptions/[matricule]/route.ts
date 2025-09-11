@@ -8,11 +8,11 @@ export async function GET(
   try {
     const { matricule } = await params;
 
-    //d'abord on recupere l'étudiant en question
-    const inscription = await prisma.liste_inscriptions.findFirst({
+    //d'abord on recupere l'étudiant (ses inscriptions) en question
+    const inscription = await prisma.liste_inscriptions.findMany({
       where: { matricule: String(matricule) },
     });
-    if (inscription === null) {
+    if (inscription.length === 0) {
       console.error("Erreur 404 - GET inscription avec matricule", matricule);
       return NextResponse.json(
         { error: `Aucune inscription trouvée pour le matricule ${matricule}` },

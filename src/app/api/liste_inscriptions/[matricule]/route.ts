@@ -7,16 +7,17 @@ export async function GET(
 ) {
   try {
     const { matricule } = await params;
-    const inscription = await prisma.liste_inscriptions.findFirst({
+    const inscriptions = await prisma.liste_inscriptions.findMany({
       where: { matricule: String(matricule) },
+      orderBy: { annee_etude: "asc" },
     });
-    if (inscription === null) {
+    if (inscriptions.length === 0) {
       return NextResponse.json(
         { error: `Aucune inscription trouvée pour le matricule ${matricule}` },
         { status: 404 }
       );
     } else {
-      return NextResponse.json(inscription);
+      return NextResponse.json(inscriptions);
     }
   } catch (error) {
     console.error("Erreur 500 - GET inscription avec matricule", error);
