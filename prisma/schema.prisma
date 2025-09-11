@@ -1,11 +1,10 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./universite_demo.sqlite"
+  url      = env("DATABASE_URL")
 }
 
 model liste_cours {
