@@ -18,7 +18,8 @@ export async function GET(
     } else {
       return NextResponse.json(inscription);
     }
-  } catch {
+  } catch (error) {
+    console.error("Erreur 500 - GET inscription avec matricule", error);
     return NextResponse.json(
       {
         error: "Une erreur est survenue lors de la récupération de données",

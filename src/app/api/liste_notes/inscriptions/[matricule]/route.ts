@@ -13,6 +13,7 @@ export async function GET(
       where: { matricule: String(matricule) },
     });
     if (inscription === null) {
+      console.error("Erreur 404 - GET inscription avec matricule", matricule);
       return NextResponse.json(
         { error: `Aucune inscription trouvée pour le matricule ${matricule}` },
         { status: 404 }
@@ -25,7 +26,8 @@ export async function GET(
     });
 
     return NextResponse.json({ inscription, notes });
-  } catch {
+  } catch (error) {
+    console.error("Erreur 500 - GET notes avec matricule", error);
     return NextResponse.json(
       {
         error: "Une erreur est survenue lors de la récupération de données",

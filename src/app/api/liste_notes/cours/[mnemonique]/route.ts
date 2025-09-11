@@ -13,8 +13,9 @@ export async function GET(
       where: { mnemonique: String(mnemonique) },
     });
     if (cours === null) {
+      console.error("Erreur 404 - GET cours avec mnemonique", mnemonique);
       return NextResponse.json(
-        { error: `Aucune inscription trouvée pour le matricule ${mnemonique}` },
+        { error: `Aucun cours trouvé pour le mnemonique ${mnemonique}` },
         { status: 404 }
       );
     }
@@ -25,7 +26,8 @@ export async function GET(
     });
 
     return NextResponse.json({ cours, notes });
-  } catch {
+  } catch (error) {
+    console.error("Erreur 500 - GET notes avec mnemonique", error);
     return NextResponse.json(
       {
         error: "Une erreur est survenue lors de la récupération de données",

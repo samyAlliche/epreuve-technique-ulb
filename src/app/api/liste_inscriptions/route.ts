@@ -8,7 +8,8 @@ export async function GET() {
       orderBy: { matricule: "asc" },
     });
     return NextResponse.json(etudiants);
-  } catch {
+  } catch (error) {
+    console.error("Erreur 500 - GET inscriptions", error);
     return NextResponse.json(
       {
         error: "Une erreur est survenue lors de la récupération de données",
