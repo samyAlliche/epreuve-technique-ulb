@@ -8,4 +8,6 @@ export const InscriptionSchema = z.object({
   cours_json: z.string(),
 });
 
+export const InscriptionsArraySchema = z.array(InscriptionSchema);
+
 export type Inscription = z.infer<typeof InscriptionSchema>;

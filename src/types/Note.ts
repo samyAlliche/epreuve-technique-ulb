@@ -7,4 +7,6 @@ export const NoteSchema = z.object({
   note: z.number().max(20).min(0),
 });
 
+export const NotesArraySchema = z.array(NoteSchema);
+
 export type Note = z.infer<typeof NoteSchema>;

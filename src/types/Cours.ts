@@ -7,4 +7,6 @@ export const CoursSchema = z.object({
   titulaire: z.string(),
 });
 
+export const CoursArraySchema = z.array(CoursSchema);
+
 export type Cours = z.infer<typeof CoursSchema>;
