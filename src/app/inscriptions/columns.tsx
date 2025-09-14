@@ -22,7 +22,7 @@ export const columns: ColumnDef<Inscription>[] = [
           return <span className="text-muted-foreground">Aucun cours</span>;
         }
         return (
-          <div className="flex gap-2">
+          <div className="flex sm:flex-wrap gap-2">
             {coursMnemoniques.map((mnemonique) => (
               <Link href={`/cours/${mnemonique}`} key={mnemonique} passHref>
                 <Button

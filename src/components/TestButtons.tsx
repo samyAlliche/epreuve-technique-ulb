@@ -10,34 +10,33 @@ import React from "react";
 import { Button } from "./shadcn-ui/button";
 
 interface TestButtonsProps {
-  fetchAll: () => Promise<{
+  allData: {
     inscriptions: Inscription[];
     cours: Cours[];
     notes: Note[];
-  }>;
+  };
 }
 
-const TestButtons: React.FC<TestButtonsProps> = ({ fetchAll }) => {
+const TestButtons: React.FC<TestButtonsProps> = ({ allData }) => {
   //PROVISOIRE
   const handleClick = async (type: "bulletins" | "anomalies") => {
     try {
-      const data = await fetchAll();
       if (type === "bulletins") {
         const bulletins = genererBulletin(
-          data.inscriptions,
-          data.cours,
-          data.notes
+          allData.inscriptions,
+          allData.cours,
+          allData.notes
         );
         console.log("Bulletins:", bulletins);
       } else {
         const anomalies = detecterAnomalies(
-          data.inscriptions,
-          data.cours,
-          data.notes
+          allData.inscriptions,
+          allData.cours,
+          allData.notes
         );
         console.log("Anomalies:", anomalies);
       }
-      console.log("ALL DATA:", data);
+      console.log("ALL DATA:", allData);
     } catch (error) {
       console.error("Error:", error);
     }
