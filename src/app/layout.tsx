@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Figtree, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/shadcn-ui/sidebar";
+import { AppSidebar } from "@/components/Sidebar/AppSidebar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const figtreeSans = Figtree({
+  variable: "--font-figtree-sans",
   subsets: ["latin"],
 });
 
@@ -25,9 +31,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${figtreeSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+            <main className="p-8">
+              <SidebarTrigger />
+              {children}
+            </main>
+          </SidebarInset>
+          <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
+        </SidebarProvider>
       </body>
     </html>
   );

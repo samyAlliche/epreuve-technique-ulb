@@ -7,6 +7,7 @@ import { Cours } from "@/types/Cours";
 import { Inscription } from "@/types/Inscription";
 import { Note } from "@/types/Note";
 import React from "react";
+import { Button } from "./shadcn-ui/button";
 
 interface TestButtonsProps {
   fetchAll: () => Promise<{
@@ -43,8 +44,8 @@ const TestButtons: React.FC<TestButtonsProps> = ({ fetchAll }) => {
   };
   return (
     <div className="flex flex-col gap-4">
-      <button onClick={() => handleClick("bulletins")}>Bulletin</button>
-      <button onClick={() => handleClick("anomalies")}>Anomalies</button>
+      <Button onClick={() => handleClick("bulletins")}>Bulletin</Button>
+      <Button onClick={() => handleClick("anomalies")}>Anomalies</Button>
     </div>
   );
 };
