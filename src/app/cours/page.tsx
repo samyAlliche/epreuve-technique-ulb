@@ -1,8 +1,8 @@
 const CoursPage = () => {
   return (
-    <main>
+    <div>
       <h1>Cours</h1>
-    </main>
+    </div>
   );
 };
 
