@@ -63,6 +63,26 @@ export async function getCours(): Promise<Cours[]> {
   return resValide.data;
 }
 
+export async function getCoursParMnemonique(
+  mnemonique: string
+): Promise<Cours | null> {
+  const res = await fetch(
+    `https://b0s0kwos00g48ow8cg0skg4w.89.116.111.143.sslip.io/cours?mnemonique=${mnemonique}`
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch cours");
+  }
+  const resValide = CoursArraySchema.safeParse(await res.json());
+  if (!resValide.success) {
+    console.error(
+      "Les données des cours n'ont pas pu être validés:",
+      resValide.error
+    );
+    throw new Error("Les données des cours sont invalides");
+  }
+  return resValide.data[0] || null;
+}
+
 //NOTES
 
 export async function getNotes(): Promise<Note[]> {

@@ -37,11 +37,11 @@ export default function RootLayout({
           <AppSidebar />
           <SidebarInset>
             <div className="flex flex-col min-h-screen">
-              <main className="p-8 flex-grow">
+              <main className="p-8 flex-1">
                 <SidebarTrigger />
                 {children}
               </main>
-              <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center py-4 text-sm text-muted-foreground">
+              <footer className="py-4 text-center text-sm text-muted-foreground">
                 Epreuve Technique de Samy Alliche
               </footer>
             </div>

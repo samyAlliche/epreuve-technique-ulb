@@ -11,3 +11,11 @@ export const InscriptionSchema = z.object({
 export const InscriptionsArraySchema = z.array(InscriptionSchema);
 
 export type Inscription = z.infer<typeof InscriptionSchema>;
+
+export type InscriptionAvecNoteDuCours = {
+  matricule: string;
+  nom: string;
+  prenom: string;
+  annee_etude: number;
+  note: number | null;
+};
