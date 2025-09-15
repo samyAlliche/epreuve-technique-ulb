@@ -3,9 +3,21 @@
 import { Button } from "@/components/shadcn-ui/button";
 import { Inscription } from "@/types/Inscription";
 import { ColumnDef } from "@tanstack/react-table";
+import { ZoomIn } from "lucide-react";
 import Link from "next/link";
 
 export const columns: ColumnDef<Inscription>[] = [
+  {
+    accessorKey: "open",
+    header: "",
+    cell: ({ row }) => (
+      <Link href={`/inscriptions/${row.original.matricule}`} passHref>
+        <Button variant="ghost" className="">
+          <ZoomIn />
+        </Button>
+      </Link>
+    ),
+  },
   { accessorKey: "matricule", header: "Matricule" },
   { accessorKey: "nom", header: "Nom" },
   { accessorKey: "prenom", header: "Prénom" },
