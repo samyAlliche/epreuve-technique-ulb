@@ -24,7 +24,7 @@ export const columns: ColumnDef<Inscription>[] = [
   { accessorKey: "matricule", header: "Matricule" },
   { accessorKey: "nom", header: "Nom" },
   { accessorKey: "prenom", header: "Prénom" },
-  { accessorKey: "annee_etude", header: "Année d'étude" },
+  { accessorKey: "annee_etude", header: "Année" },
   {
     accessorKey: "cours_json",
     header: "Cours",

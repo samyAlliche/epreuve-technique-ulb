@@ -20,8 +20,8 @@ const InscriptionPage = async ({
   params: { matricule: string; annee_etude: string };
 }) => {
   //fetch inscription
-  const matricule = await params.matricule;
-  const annee_etude = parseInt(await params.annee_etude);
+  const { matricule, annee_etude: annee_str } = await params;
+  const annee_etude = parseInt(annee_str);
   const inscriptionsDuMatricule = await getInscriptionsParMatricule(matricule);
   const inscription = inscriptionsDuMatricule.find(
     (insc) => insc.annee_etude === annee_etude
