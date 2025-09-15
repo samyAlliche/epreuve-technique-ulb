@@ -23,7 +23,7 @@ export const columns: ColumnDef<Anomalie>[] = [
     cell: ({ row }) => {
       return (
         <Link
-          href={`/cours/${row.original.matricule}-${row.original.annee}`}
+          href={`/inscriptions/${row.original.matricule}/${row.original.annee}`}
           className="hover:underline"
         >
           {row.original.matricule}

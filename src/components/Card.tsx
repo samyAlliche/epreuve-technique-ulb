@@ -22,7 +22,7 @@ const Card: React.FC<CardProps> = ({
       <Link
         href={href}
         className={cn(
-          "flex rounded-lg bg-primary text-background p-4 shadow-md hover:scale-102 transition-transform ease-in-out",
+          "flex rounded-lg bg-primary text-background p-4 shadow-md",
           className
         )}
       >
@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <div
       className={cn(
-        "flex rounded-lg bg-primary text-background p-4 shadow-md hover:scale-102 transition-transform ease-in-out",
+        "flex rounded-lg bg-primary text-background p-4 shadow-md",
         className
       )}
     >
@@ -62,14 +62,18 @@ const HomeCard: React.FC<CardProps> = ({
       <Link
         href={href}
         className={cn(
-          "flex rounded-lg p-4 px-10 gap-8 items-center shadow-md hover:scale-102 transition-transform ease-in-out justify-center",
+          "flex rounded-lg p-4 px-10 gap-5 sm:gap-2 lg:gap-5 items-center shadow-md hover:scale-103 duration-300 transition-transform ease-in-out justify-center max-w-70 w-full",
           className
         )}
       >
         {icon && <div className="icon">{icon}</div>}
         <div className="flex flex-col items-center">
-          <span className="text-4xl font-black">{content}</span>
-          <span className="font-extrabold uppercase">{label}</span>
+          <span className="text-4xl md:text-2xl lg:text-4xl font-black">
+            {content}
+          </span>
+          <span className="text-md md:text-sm lg:text-md font-extrabold uppercase">
+            {label}
+          </span>
         </div>
       </Link>
     );
@@ -77,7 +81,7 @@ const HomeCard: React.FC<CardProps> = ({
   return (
     <div
       className={cn(
-        "flex rounded-lg p-4 px-10 gap-8 items-center shadow-md hover:scale-102 transition-transform ease-in-out justify-center",
+        "flex rounded-lg p-4 px-10 gap-5 sm:gap-2 lg:gap-5 items-center shadow-md hover:scale-102 transition-transform ease-in-out justify-center max-w-70 w-full",
         className
       )}
     >

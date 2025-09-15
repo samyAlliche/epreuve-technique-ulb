@@ -66,7 +66,10 @@ export function AppSidebar() {
                       isActive && "font-black"
                     )}
                   >
-                    <Link href={item.url} className="flex items-center w-full">
+                    <Link
+                      href={item.url}
+                      className="flex items-center w-full gap-3"
+                    >
                       <item.icon className=" h-5 w-5" />
                       <span className="font-bold">{item.title}</span>
                     </Link>

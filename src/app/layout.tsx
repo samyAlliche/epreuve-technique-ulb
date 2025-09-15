@@ -37,7 +37,7 @@ export default function RootLayout({
           <AppSidebar />
           <SidebarInset>
             <div className="flex flex-col min-h-screen">
-              <main className="p-8 flex-1">
+              <main className="p-8 flex-1 flex flex-col gap-2">
                 <SidebarTrigger />
                 {children}
               </main>
