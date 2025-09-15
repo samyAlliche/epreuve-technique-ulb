@@ -11,7 +11,7 @@ export default async function Home() {
     notes: Note[];
   } = await fetchAll();
   return (
-    <div className="">
+    <div className="py-5 container mx-auto">
       <TestButtons allData={allData} />
     </div>
   );

@@ -1,4 +1,4 @@
-import { Anomalie, AnomalieType } from "@/types/Anomalie";
+import { Anomalie, AnomalieTypeEnum } from "@/types/Anomalie";
 import { Cours } from "@/types/Cours";
 import { Inscription } from "@/types/Inscription";
 import { Note } from "@/types/Note";
@@ -43,7 +43,7 @@ export const detecterAnomalies = (
     // INSCRIPTION_SANS_COURS : cours_json vide.
     if (coursInscrits.length === 0) {
       anomalies.push({
-        type: AnomalieType.InscriptionSansCours,
+        type: AnomalieTypeEnum.InscriptionSansCours,
         matricule: inscription.matricule,
         annee: inscription.annee_etude,
         detail: `L'étudiant n'a aucun cours dans son inscription pour l'année ${inscription.annee_etude}.`,
@@ -54,7 +54,7 @@ export const detecterAnomalies = (
     coursInscrits.forEach((mnemonique) => {
       if (!coursExistants.has(mnemonique)) {
         anomalies.push({
-          type: AnomalieType.CoursInconnu,
+          type: AnomalieTypeEnum.CoursInconnu,
           matricule: inscription.matricule,
           annee: inscription.annee_etude,
           detail: `Inscrit à un cours inconnu: ${mnemonique}`,
@@ -72,7 +72,7 @@ export const detecterAnomalies = (
 
     if (notesVues.has(cleUnique)) {
       anomalies.push({
-        type: AnomalieType.DuplicataNote,
+        type: AnomalieTypeEnum.DuplicataNote,
         matricule: note.matricule,
         detail: `Plusieurs notes trouvées pour le cours ${note.mnemonique}.`,
       });
@@ -85,7 +85,7 @@ export const detecterAnomalies = (
     const infoCours = coursDetailsMap.get(note.mnemonique);
     if (infoCours && infoCours.credit <= 0) {
       anomalies.push({
-        type: AnomalieType.NoteSansCredit,
+        type: AnomalieTypeEnum.NoteSansCredit,
         matricule: note.matricule,
         detail: `Le cours noté "${note.mnemonique}" a un crédit invalide (${infoCours.credit}).`,
       });
@@ -95,7 +95,7 @@ export const detecterAnomalies = (
     const coursInscrits = inscriptionsMap.get(note.matricule);
     if (!coursInscrits || !coursInscrits.has(note.mnemonique)) {
       anomalies.push({
-        type: AnomalieType.NoteSansInscription,
+        type: AnomalieTypeEnum.NoteSansInscription,
         matricule: note.matricule,
         detail: `Note trouvée pour le cours "${note.mnemonique}" auquel l'étudiant n'a jamais été inscrit.`,
       });
