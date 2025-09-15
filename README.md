@@ -23,9 +23,9 @@ Ce projet a été construit avec les technologies suivantes :
 
 ### Justification du choix de shadcn/ui et Tailwind CSS
 
-L'offre d'emploi mentionnait Bootstrap comme une compétence requise, que j'ai eu l'occasion d'utiliser durant ma formation.
+L'offre d'emploi mentionnait Bootstrap comme une compétence requise, que j'ai eu l'occasion d'utiliser durant mes études.
 
-Cependant, pour cette évaluation technique, l'énoncé m'accordait la **liberté de choisir le framework frontend**. J'ai donc opté pour **shadcn/ui et Tailwind CSS**, des outils que je maîtrise particulièrement bien et qui m'ont permis de démontrer au mieux mes compétences en conception d'interfaces utilisateur (UX/UI) et en développement frontend moderne.
+Cependant, pour cette évaluation technique, l'énoncé m'accordait la **liberté de choisir le framework frontend**. J'ai donc utilisé **shadcn/ui et Tailwind CSS**, des outils que je maîtrise bien et qui m'ont permis de démontrer au mieux mes compétences en conception d'interfaces utilisateur (UX/UI) et en développement frontend moderne.
 
 Ce choix m'a permis de me concentrer sur la construction d'une application à la fois esthétique, fonctionnelle et entièrement responsive dans le temps imparti, tout en restant bien entendu à l'aise pour m'intégrer à des projets utilisant Bootstrap.
 
@@ -39,8 +39,8 @@ Zod a été utilisée pour la validation des données provenant de l'API externe
 
 - **[✓] Partie 1 : API de Consultation**
 
-  - Endpoints RESTful créés avec les Route Handlers de Next.js.
-  - Connexion sécurisée à la base de données SQLite via Prisma.
+  - Endpoints créés avec les Route Handlers de Next.js.
+  - Connexion à la base de données SQLite via Prisma.
   - Endpoints pour les inscriptions, les cours et les notes.
 
 - **[✓] Partie 2 : Traitement des Données**
@@ -61,10 +61,7 @@ Zod a été utilisée pour la validation des données provenant de l'API externe
 
 ### Partie 1 : API de Consultation des Données
 
-Une API a été construite en utilisant les routes de Next.js pour interagir avec la base de données SQLite via Prisma. Une attention particulière a été portée à la performance et à la sécurité.
-
-- **Singleton Prisma** : Une instance unique de `PrismaClient` est partagée à travers l'application pour éviter l'épuisement des connexions à la base de données.
-- **Gestion des erreurs** : Les erreurs internes sont loguées côté serveur et ne sont jamais exposées au client, qui reçoit un message générique.
+Une API a été construite en utilisant les routes de Next.js pour interagir avec la base de données SQLite via Prisma.
 
 **Endpoints créés :**
 
@@ -88,7 +85,6 @@ Si vous voulez essayer ces deux fonctions, enlever le `<TestButtons>` des commen
 
 - **Détection des Anomalies (`/lib/anomalies.ts`)** :
   - Une fonction `detecterAnomalies` identifie les 5 types d'incohérences demandés
-  - Le code est optimisé en utilisant des structures de données `Map` et `Set` pour minimiser le nombre de boucles et garantir de bonnes performances, même avec un grand volume de données.
 
 ### Partie 3 : Interface Utilisateur Responsive
 
@@ -126,7 +122,7 @@ L'interface a été conçue en utilisant une approche Server-First avec les Serv
     - Initialisez Prisma:
 
     ```bash
-    npx prisma generate
+    npx prisma init
     ```
 
     - Placez le fichier `universite_demo.sqlite` dans le dossier `/prisma` à la racine du projet.
@@ -150,3 +146,13 @@ L'interface a été conçue en utilisant une approche Server-First avec les Serv
 L'application sera alors accessible à `http://localhost:3000`.
 
 ---
+
+## Note sur l'Utilisation de l'IA
+
+Conformément aux consignes de transparence, je précise avoir eu recours à l'IA pour les tâches suivantes:
+
+- Avant de commencer à coder j'ai brainstormé et structuré toute mes idées et tâches à venir avec l'IA
+- Pour des revues de code, notamment dans la partie 2 quant à l'utilisation des Maps et des Sets
+- Une aide pour le debug, pour identifier plus rapidement des erreurs complexes (notamment pour `DUPLICATA_NOTE` dans la partie 2) ou de style (CSS).
+- Une aide à la rédaction de ce README.md 😁
+  La conception, l'architecture, la logique ainsi que l'écriture du code restent mon propre travail!
