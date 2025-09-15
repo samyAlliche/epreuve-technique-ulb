@@ -128,17 +128,11 @@ export async function fetchAll(): Promise<{
   cours: Cours[];
   notes: Note[];
 }> {
-  console.log("FETCH SUR LE SERVEUR (EN CONCURRENCE)");
   const [inscriptionsData, coursData, notesData] = await Promise.all([
     getInscriptions(),
     getCours(),
     getNotes(),
   ]);
-  console.log("DATA:", {
-    inscriptions: inscriptionsData,
-    cours: coursData,
-    notes: notesData,
-  });
 
   return {
     inscriptions: inscriptionsData,

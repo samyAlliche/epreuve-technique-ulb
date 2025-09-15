@@ -10,6 +10,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { columns } from "./columns";
 import { Inscription } from "@/types/Inscription";
+import { Card } from "@/components/Card";
 
 const SingleCoursPage = async ({
   params,
@@ -52,14 +53,8 @@ const SingleCoursPage = async ({
           <h1 className="text-3xl font-black">{cours.intitule}</h1>
         </div>
         <div className="grid grid-cols-2 gap-5">
-          <div className="flex flex-col">
-            <span className="text-muted-foreground">Crédit</span>
-            <span className="text-3xl font-black">{cours.credit}</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-muted-foreground">Titulaire</span>
-            <span className="text-3xl font-black">{cours.titulaire}</span>
-          </div>
+          <Card label="Crédit" content={cours.credit} />
+          <Card label="Titulaire" content={cours.titulaire} />
         </div>
         <h2 className="text-xl font-bold">Inscrits à ce cours</h2>
         <DataTable columns={columns} data={inscriptionsAvecNoteDuCours} />

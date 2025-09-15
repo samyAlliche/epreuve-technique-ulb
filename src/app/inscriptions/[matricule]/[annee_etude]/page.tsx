@@ -13,6 +13,7 @@ import { ChevronLeft, User } from "lucide-react";
 import Link from "next/link";
 import { columns } from "./columns";
 import { DataTable } from "@/components/Table/data-table";
+import { Card } from "@/components/Card";
 
 const InscriptionPage = async ({
   params,
@@ -86,33 +87,15 @@ const InscriptionPage = async ({
       <div className="flex flex-col gap-3">
         <h2 className="text-2xl font-black">Bulletin</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-          <div className="flex flex-col">
-            <span className="text-muted-foreground">ECTS inscrits</span>
-            <span className="text-3xl font-black">
-              {bulletin.ects_total_inscrits}
-            </span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-muted-foreground">ECTS obtenus</span>
-            <span className="text-3xl font-black">{bulletin.ects_obtenus}</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-muted-foreground">Moyenne pondérée</span>
-            <span className="text-3xl font-black">
-              {bulletin.moyenne_ponderee ?? "N/A"}
-            </span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-muted-foreground">Réussite</span>
-            <span
-              className={`text-3xl font-black ${
-                bulletin.reussite ? "text-green-700" : "text-red-700"
-              }`}
-            >
-              {bulletin.reussite ? "Oui" : "Non"}
-            </span>
-          </div>
+          <Card label="ECTS inscrits" content={bulletin.ects_total_inscrits} />
+          <Card label="ECTS obtenus" content={bulletin.ects_obtenus} />
+          <Card
+            label="Moyenne pondérée"
+            content={bulletin.moyenne_ponderee ?? "N/A"}
+          />
+          <Card label="Réussite" content={bulletin.reussite ? "Oui" : "Non"} />
         </div>
+
         <h3 className="text-xl font-black pt-5">Détails des cours</h3>
         <DataTable columns={columns} data={bulletin.details} />
       </div>
