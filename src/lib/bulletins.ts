@@ -76,3 +76,12 @@ export const genererBulletin = (
   });
   return bulletins;
 };
+
+export const genererBulletinParInscription = (
+  inscription: Inscription,
+  cours: Cours[],
+  notes: Note[]
+): Bulletin => {
+  // Peut être optimisé si nécessaire mais laissé comme ça par manque de temps
+  return genererBulletin([inscription], cours, notes)[0];
+};

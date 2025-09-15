@@ -1,11 +1,11 @@
 import TablePageTemplate from "@/components/Table/TablePageTemplate";
 import { columns } from "./columns";
-import { getInscription } from "@/lib/fetchAPI";
+import { getInscriptions } from "@/lib/fetchAPI";
 import { Inscription } from "@/types/Inscription";
 import { Users } from "lucide-react";
 
 const InscriptionsPage = async () => {
-  const inscriptions: Inscription[] = await getInscription();
+  const inscriptions: Inscription[] = await getInscriptions();
   return (
     <TablePageTemplate
       columns={columns}

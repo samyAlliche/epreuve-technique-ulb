@@ -3,6 +3,7 @@
 import { Badge } from "@/components/shadcn-ui/badge";
 import { Anomalie, AnomalieTypes } from "@/types/Anomalie";
 import { ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
 
 export const columns: ColumnDef<Anomalie>[] = [
   {
@@ -16,7 +17,20 @@ export const columns: ColumnDef<Anomalie>[] = [
       return <Badge variant="outline">{intitule}</Badge>;
     },
   },
-  { accessorKey: "matricule", header: "Matricule" },
+  {
+    accessorKey: "matricule",
+    header: "Matricule",
+    cell: ({ row }) => {
+      return (
+        <Link
+          href={`/cours/${row.original.matricule}-${row.original.annee}`}
+          className="hover:underline"
+        >
+          {row.original.matricule}
+        </Link>
+      );
+    },
+  },
   { accessorKey: "annee", header: "Année" },
   { accessorKey: "detail", header: "Détail" },
 ];

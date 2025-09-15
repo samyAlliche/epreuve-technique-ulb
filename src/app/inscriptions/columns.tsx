@@ -11,7 +11,10 @@ export const columns: ColumnDef<Inscription>[] = [
     accessorKey: "open",
     header: "",
     cell: ({ row }) => (
-      <Link href={`/inscriptions/${row.original.matricule}`} passHref>
+      <Link
+        href={`/inscriptions/${row.original.matricule}/${row.original.annee_etude}`}
+        passHref
+      >
         <Button variant="ghost" className="">
           <ZoomIn />
         </Button>
