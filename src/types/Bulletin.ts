@@ -7,11 +7,13 @@ export type Bulletin = {
   ects_obtenus: number;
   moyenne_ponderee: number | null;
   reussite: boolean;
-  details: {
-    mnemonique: string;
-    intitule: string;
-    credit: number;
-    titulaire: string;
-    note: number | null;
-  }[];
+  details: BulletinDetail[];
+};
+
+export type BulletinDetail = {
+  mnemonique: string;
+  intitule: string;
+  credit: number;
+  titulaire: string;
+  note: number | null;
 };

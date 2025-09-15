@@ -26,7 +26,7 @@ export const columns: ColumnDef<Cours>[] = [
       <Badge variant="outline" asChild>
         <Link
           href={`/cours/${row.original.mnemonique}`}
-          className="font-medium text-primary hover:underline"
+          className="text-primary hover:underline"
         >
           {row.original.mnemonique}
         </Link>
