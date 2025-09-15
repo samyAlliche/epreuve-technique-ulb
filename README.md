@@ -154,5 +154,6 @@ Conformément aux consignes de transparence, je précise avoir eu recours à l'I
 - Avant de commencer à coder j'ai brainstormé et structuré toute mes idées et tâches à venir avec l'IA
 - Pour des revues de code, notamment dans la partie 2 quant à l'utilisation des Maps et des Sets
 - Une aide pour le debug, pour identifier plus rapidement des erreurs complexes (notamment pour `DUPLICATA_NOTE` dans la partie 2) ou de style (CSS).
-- Une aide à la rédaction de ce README.md 😁
-  La conception, l'architecture, la logique ainsi que l'écriture du code restent mon propre travail!
+- Une aide à la rédaction de ce README.md 😁.
+
+La conception, l'architecture, la logique ainsi que l'écriture du code restent mon propre travail!
