@@ -21,7 +21,6 @@ export default async function Home() {
 
   return (
     <div className="container mx-auto xl:px-25 py-5 flex flex-col gap-5">
-      {/* <TestButtons allData={allData} /> */}
       <div className="flex flex-col rounded-3xl bg-primary text-background p-7 px-10 shadow-md gap-5 justify-center">
         <div className="flex flex-col gap-2">
           <h1 className="text-5xl font-extrabold">Bienvenue</h1>
@@ -52,6 +51,7 @@ export default async function Home() {
           />
         </div>
       </div>
+      {/* <TestButtons allData={allData} /> */}
     </div>
   );
 }

@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Épreuve Technique réalisé par Samy Alliche
 
-## Getting Started
+## À propos de ce projet
 
-First, run the development server:
+Cette application web full-stack a été développée dans le cadre de l'évaluation technique pour le poste de Développeur Full-Stack au sein de la Faculté de Psychologie, des Sciences de l’Éducation et de Logopédie de l'ULB.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Le projet met en œuvre les trois parties demandées dans l'énoncé :
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1.  Une **API REST** pour consulter les données d'une base de données SQLite.
+2.  Un **moteur de traitement de données** pour générer des bulletins ECTS et un rapport d'anomalies à partir d'une API externe.
+3.  Une **interface utilisateur responsive** pour visualiser et naviguer à travers ces données.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Choix Techniques et Justifications
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Ce projet a été construit avec les technologies suivantes :
 
-## Learn More
+- **Framework :** Next.js 15 (App Router)
+- **Langage :** TypeScript
+- **Styling :** Tailwind CSS
+- **Composants UI :** shadcn/ui
+- **ORM :** Prisma
+- **Validation de données :** Zod
 
-To learn more about Next.js, take a look at the following resources:
+### Justification du choix de shadcn/ui et Tailwind CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+L'offre d'emploi mentionnait Bootstrap comme une compétence requise, que j'ai eu l'occasion d'utiliser durant ma formation.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Cependant, pour cette évaluation technique, l'énoncé m'accordait la **liberté de choisir le framework frontend**. J'ai donc opté pour **shadcn/ui et Tailwind CSS**, des outils que je maîtrise particulièrement bien et qui m'ont permis de démontrer au mieux mes compétences en conception d'interfaces utilisateur (UX/UI) et en développement frontend moderne.
 
-## Deploy on Vercel
+Ce choix m'a permis de me concentrer sur la construction d'une application à la fois esthétique, fonctionnelle et entièrement responsive dans le temps imparti, tout en restant bien entendu à l'aise pour m'intégrer à des projets utilisant Bootstrap.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Utilisation de Zod
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Zod a été utilisée pour la validation des données provenant de l'API externe (Partie 2 et 3). C'est un outil que j'ai apprit à utiliser durant mon stage de fin d'étude et permet de garantir la robustesse et la sécurité de l'application en s'assurant que les données externes sont conformes au format attendu avant tout traitement.
+
+---
+
+## Fonctionnalités Implémentées
+
+- **[✓] Partie 1 : API de Consultation**
+
+  - Endpoints RESTful créés avec les Route Handlers de Next.js.
+  - Connexion sécurisée à la base de données SQLite via Prisma.
+  - Endpoints pour les inscriptions, les cours et les notes.
+
+- **[✓] Partie 2 : Traitement des Données**
+
+  - Génération de bulletins ECTS complets par étudiant et par année.
+  - Détection et rapport des 5 types d'anomalies de données demandés.
+
+- **[✓] Partie 3 : Interface Utilisateur**
+  - Un tableau de bord en page d'accueil.
+  - Des pages pour lister les inscriptions et les cours
+  - Une page de détail par inscription, affichant le bulletin calculé
+  - Une page dédiée aux anomalies
+  - L'interface est entièrement responsive
+
+---
+
+## Détail des Fonctionnalités Implémentées
+
+### Partie 1 : API de Consultation des Données
+
+Une API a été construite en utilisant les routes de Next.js pour interagir avec la base de données SQLite via Prisma. Une attention particulière a été portée à la performance et à la sécurité.
+
+- **Singleton Prisma** : Une instance unique de `PrismaClient` est partagée à travers l'application pour éviter l'épuisement des connexions à la base de données.
+- **Gestion des erreurs** : Les erreurs internes sont loguées côté serveur et ne sont jamais exposées au client, qui reçoit un message générique.
+
+**Endpoints créés :**
+
+- `GET /api/liste_inscriptions` : Récupère la liste de toutes les inscriptions.
+- `GET /api/liste_cours` : Récupère la liste de tous les cours.
+- `GET /api/liste_notes` : Récupère la liste de toutes les notes.
+- `GET /api/liste_inscriptions/[matricule]` : Récupère toutes les inscriptions ayant la matricule entré en parametre
+- `GET /api/liste_cours/[mnemonique]` : Récupère le cours ayant le mnemonique entré en parametre
+- `GET /api/liste_notes/inscriptions/[matricule]` : Récupère les inscriptions ayant la matricule entré en parametre ainsi que les notes de ces inscriptions
+- `GET /api/liste_notes/cours/[mnemonique]` : Récupère le cours ayant le mnemonique entré en parametre ainsi que les notes de ce cours
+
+### Partie 2 : Bulletins ECTS & Rapport d’Anomalies
+
+Si vous voulez essayer ces deux fonctions, enlever le `<TestButtons>` des commentaires dans `/app/page.tsx`. Deux boutons seront alors disponible sur la page d'accueil (les résultats sont affiché sur la console)
+
+- **Génération des Bulletins (`/lib/bulletin.ts`)** :
+
+  - Une fonction `genererBulletins` a été créée pour calculer les données d'un bulletin à partir de l'ensemble des données
+  - Elle calcule précisément tous les champs demandés : `ects_total_inscrits`, `ects_obtenus`, `moyenne_ponderee`, et la condition de `reussite`
+  - J'ai aussi fait une fonction `genererBulletinPourUneInscription` pour pouvoir calculer le bulletin d'une seule inscription
+
+- **Détection des Anomalies (`/lib/anomalies.ts`)** :
+  - Une fonction `detecterAnomalies` identifie les 5 types d'incohérences demandés
+  - Le code est optimisé en utilisant des structures de données `Map` et `Set` pour minimiser le nombre de boucles et garantir de bonnes performances, même avec un grand volume de données.
+
+### Partie 3 : Interface Utilisateur Responsive
+
+L'interface a été conçue en utilisant une approche Server-First avec les Server Components pour maximiser les performances
+
+**Pages créées :**
+
+- **`/` (Accueil)** : Un tableau de bord affichant des données clés comme le nombre total d'étudiants, de cours, et surtout le nombre d'anomalies détectées.
+- **`/inscriptions`** : Une page affichant la liste de toutes les inscriptions dans un tableau
+- **`/cours`** : Une page listant l'ensemble des cours disponibles sous forme de tableau
+- **`/anomalies`** : Une page présentant les anomalies dans un tableau clair pour identifier facilement les problèmes.
+- **`/inscriptions/[matricule]/[annee_etude]`** : La page de détail d'une inscription, affichant le bulletin de l'étudiant pour une année spécifique. Inclut une navigation facile entre les différentes années d'étude de l'étudiant.
+- **`/cours/[mnemonique]`** : La page de détail d'un cours, affichant ses informations et la liste de tous les étudiants inscrits avec leur note.
+- **`/not-found`** : Dans le cas où l'utilisateur se retrouve perdu
+
+---
+
+## Pour Lancer le Projet Localement
+
+1.  **Cloner le repo :**
+
+    ```bash
+    git clone https://github.com/samyAlliche/epreuve-technique-ulb.git
+    cd ./epreuve-technique-ulb
+    ```
+
+2.  **Installer les dépendances :**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Configurer la base de données :**
+
+    - Initialisez Prisma:
+
+    ```bash
+    npx prisma generate
+    ```
+
+    - Placez le fichier `universite_demo.sqlite` dans le dossier `/prisma` à la racine du projet.
+    - Créez un fichier `.env` à la racine du projet et ajoutez la ligne suivante :
+
+    ```env
+    DATABASE_URL="file:./prisma/universite_demo.sqlite"
+    ```
+
+    - Générez le client Prisma :
+
+    ```bash
+    npx prisma generate
+    ```
+
+4.  **Lancer le serveur de développement :**
+    ```bash
+    npm run dev
+    ```
+
+L'application sera alors accessible à `http://localhost:3000`.
+
+---

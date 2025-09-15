@@ -12,7 +12,7 @@ Pour chaque étudiant et année, produit :
 - reussite = true si ects_obtenus ≥ 60 ou si tous les cours ont une note et moyenne_ponderee ≥ 10
 - details = liste des cours {mnemonique, intitule, credit, titulaire, note|null}, triés par mnémonique
 */
-export const genererBulletin = (
+export const genererBulletins = (
   inscriptions: Inscription[],
   cours: Cours[],
   notes: Note[]
@@ -83,5 +83,5 @@ export const genererBulletinParInscription = (
   notes: Note[]
 ): Bulletin => {
   // Peut être optimisé si nécessaire mais laissé comme ça par manque de temps
-  return genererBulletin([inscription], cours, notes)[0];
+  return genererBulletins([inscription], cours, notes)[0];
 };

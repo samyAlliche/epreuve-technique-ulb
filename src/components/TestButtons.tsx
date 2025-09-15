@@ -2,7 +2,7 @@
 
 "use client";
 import { detecterAnomalies } from "@/lib/anomalies";
-import { genererBulletin } from "@/lib/bulletins";
+import { genererBulletins } from "@/lib/bulletins";
 import { Cours } from "@/types/Cours";
 import { Inscription } from "@/types/Inscription";
 import { Note } from "@/types/Note";
@@ -22,7 +22,7 @@ const TestButtons: React.FC<TestButtonsProps> = ({ allData }) => {
   const handleClick = async (type: "bulletins" | "anomalies") => {
     try {
       if (type === "bulletins") {
-        const bulletins = genererBulletin(
+        const bulletins = genererBulletins(
           allData.inscriptions,
           allData.cours,
           allData.notes
